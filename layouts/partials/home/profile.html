@@ -40,25 +40,4 @@
 <section>
   {{ partial "recent-articles/main.html" . }}
 </section>
-{{$typeitLib := resources.Get "lib/typeit/typeit.umd.js"}}
-<script defer src="{{$typeitLib.RelPermalink }}"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-      new TypeIt("#author-name", {
-        
-        speed: 250,
-        lifeLike: true,
-        breakLines: false,
-        waitUntilVisible: true,
-        loop: true,
-        cursor: false
-      })
-      .pause(500)
-      .delete()
-      .type("0xInfinity")
-      .pause(500)
-      .delete()
-      .type("0x∞")
-      .go();
-    });
-</script>
+{{ partial "custom/typeit-nicknames.html" . }}

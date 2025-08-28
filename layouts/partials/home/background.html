@@ -102,27 +102,5 @@
     data-target-id="background-blur"
     data-image-id="homepage-background-image"
     {{ if $homepageImage }}data-image-url="{{ $homepageImage.RelPermalink }}"{{ end }}></script>
-{{$typeitLib := resources.Get "lib/typeit/typeit.umd.js"}}
-<script defer src="{{$typeitLib.RelPermalink }}"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-      new TypeIt("#author-name", {
-        
-        speed: 250,
-        lifeLike: true,
-        breakLines: false,
-        waitUntilVisible: true,
-        loop: true,
-        cursor: false
-      })
-      .pause(500)
-      .delete()
-      .type("Infinity")
-      .pause(500)
-      .delete()
-      .type("∞")
-      .pause(1000)
-      .go();
-    });
-</script>
+  {{ partial "custom/typeit-nicknames.html" . }}
 {{ end }}
