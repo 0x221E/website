@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://0xinfinity.dev/sitemap.xml
