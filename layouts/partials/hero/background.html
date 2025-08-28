@@ -5,6 +5,11 @@
 {{- if not $featured }}{{ $featured = $images.GetMatch "*feature*" }}{{ end -}}
 {{- if not $featured }}{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}{{ end -}}
 
+{{ $background := ""}}
+{{ with resources.GetMatch "background-images/background-post.jpg" }}
+  {{$background = .RelPermalink }}
+{{ end }}
+
 {{ if and .Params.featureimage (not $featured) }}
   {{- $url:= .Params.featureimage -}}
   {{ $featured = resources.GetRemote $url }}
@@ -43,7 +48,7 @@
     {{ end }}
     <img
       id="background-image"
-      src="/background-post.jpg"
+      src="{{ $background }}"
       alt="Background Image"
       class="absolute inset-0 w-full h-full object-cover">
     <div
