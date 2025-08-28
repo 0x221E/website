@@ -1,0 +1,66 @@
+baseURL = 'https://d3m1r.com/'
+languageCode = 'en-us'
+title = '0x221E'
+theme = 'hugo-noir'
+
+relativeURLs = true
+canonifyURLs = true
+
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = true
+
+[taxonomies]
+  category = 'categories'
+  tag = "tags"
+
+[params]
+  name = "0xInfinity"
+  description = "University Student | Cybersecurity Enthusiast"
+  discord = "0xEndlessBanter"
+  github = "https://github.com/0x221E/website/"
+  github_username = "0x221E"
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    title = "0x221E - Personal Website"
+    weight = 1
+    contentDir = "content/en"
+  [languages.en.menu]
+    [[languages.en.menu.main]]
+      name = "About"
+      pageRef = "/about"
+      weight = 1
+    [[languages.en.menu.main]]
+      name = "Walkthroughs"
+      pageRef = "/walkthroughs"
+      weight = 2
+    [[languages.en.menu.main]]
+      name = "Blog"
+      pageRef = "/blog"
+      weight = 3
+    [[languages.en.menu.main]]
+      name = "Contact"
+      pageRef = "/contact"
+      weight = 4
+
+[menu]
+  [[menu.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 1
+  [[menu.main]]
+    name = "Walkthroughs"
+    pageRef = "/walkthroughs"
+    weight = 2
+  [[menu.main]]
+    name = "Blog"
+    pageRef = "/blog"
+    weight = 3
+  [[menu.main]]
+    name = "Contact"
+    pageRef = "/contact"
+    weight = 4
+
+[outputs]
+home = ["HTML", "RSS"]

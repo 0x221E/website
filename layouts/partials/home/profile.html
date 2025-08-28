@@ -1,0 +1,64 @@
+{{ $disableImageOptimization := .Site.Params.disableImageOptimization | default false }}
+<article
+  class="{{ if not .Site.Params.homepage.showRecent }}
+    h-full
+  {{ end }} flex flex-col items-center justify-center text-center">
+  <header class="relative px-1 py-1 flex flex-col items-center mb-3">
+    {{ with .Site.Params.Author.image }}
+      {{ $authorImage := "" }}
+      {{ if or (strings.HasPrefix . "http:") (strings.HasPrefix . "https:") }}
+        {{ $authorImage = resources.GetRemote . }}
+      {{ else }}
+        {{ $authorImage = resources.Get . }}
+      {{ end }}
+      {{ if $authorImage }}
+        {{ if not $disableImageOptimization }}
+          {{ $authorImage = $authorImage.Fill (print "288x288 q" ( $.Site.Params.Author.imagequality | default "96" )) }}
+        {{ end }}
+        <img
+          class="mb-2 rounded-full h-36 w-36"
+          width="144"
+          height="144"
+          alt="{{ $.Site.Params.Author.name | default " Author" }}"
+          src="{{ $authorImage.RelPermalink }}">
+      {{ end }}
+    {{ end }}
+    <h1 id="author-name" class="text-4xl font-extrabold">
+      0x221E
+    </h1>
+    {{ with .Site.Params.Author.headline }}
+      <h2 class="text-xl text-neutral-500 dark:text-neutral-400">
+        {{ . | markdownify }}
+      </h2>
+    {{ end }}
+    <div class="mt-1 text-2xl">
+      {{ partialCached "author-links.html" . }}
+    </div>
+  </header>
+  <section class="prose dark:prose-invert w-full">{{ .Content }}</section>
+</article>
+<section>
+  {{ partial "recent-articles/main.html" . }}
+</section>
+{{$typeitLib := resources.Get "lib/typeit/typeit.umd.js"}}
+<script defer src="{{$typeitLib.RelPermalink }}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      new TypeIt("#author-name", {
+        
+        speed: 250,
+        lifeLike: true,
+        breakLines: false,
+        waitUntilVisible: true,
+        loop: true,
+        cursor: false
+      })
+      .pause(500)
+      .delete()
+      .type("0xInfinity")
+      .pause(500)
+      .delete()
+      .type("0x∞")
+      .go();
+    });
+</script>
